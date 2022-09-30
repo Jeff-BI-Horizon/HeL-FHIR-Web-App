@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ANAREPORTINGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HeL_FHIR_Log">
+          <Key>
+            <PropertyRef Name="helFhirLogId" />
+          </Key>
+          <Property Name="helFhirLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="requestStamp" Type="datetime" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="userStation" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="patientMRN" Type="int" Nullable="false" />
+          <Property Name="requestDomain" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="requestUrl" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="requestStatusCode" Type="int" Nullable="false" />
+          <Property Name="requestStatusMessage" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="phiSource" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HeL_FHIR_Log_Detail">
+          <Key>
+            <PropertyRef Name="helFhirLogDetailId" />
+          </Key>
+          <Property Name="helFhirLogDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="helFhirLogId" Type="int" Nullable="false" />
+          <Property Name="referenceUrl" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="informationSourceNode" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="informationSource" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ANAREPORTING.HHSNY.Person' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Person_Update_Dt_Tm" />
+            <PropertyRef Name="Person_Create_Dt_Tm" />
+            <PropertyRef Name="Person_Id" />
+            <PropertyRef Name="Person_MRN" />
+            <PropertyRef Name="Person_Sex" />
+          </Key>
+          <Property Name="Person_Update_Dt_Tm" Type="datetime" Nullable="false" />
+          <Property Name="Person_Create_Dt_Tm" Type="datetime" Nullable="false" />
+          <Property Name="Person_Id" Type="int" Nullable="false" />
+          <Property Name="Person_MRN" Type="int" Nullable="false" />
+          <Property Name="Person_Name_First" Type="varchar" MaxLength="60" />
+          <Property Name="Person_Name_Last" Type="varchar" MaxLength="60" />
+          <Property Name="Person_Name_Middle" Type="varchar" MaxLength="60" />
+          <Property Name="Person_Name_Full_Format" Type="varchar" MaxLength="180" />
+          <Property Name="Person_Abs_Birth_Dt_Tm" Type="datetime" />
+          <Property Name="Person_Sex" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Person_Ethnic_Group" Type="varchar" MaxLength="50" />
+          <Property Name="Person_Race" Type="varchar" MaxLength="50" />
+          <Property Name="Person_Language" Type="varchar" MaxLength="30" />
+          <Property Name="Person_Marital_Type" Type="varchar" MaxLength="30" />
+          <Property Name="Person_VIP" Type="varchar" MaxLength="4" />
+          <Property Name="Person_SSN" Type="varchar" MaxLength="15" />
+          <Property Name="Person_Current_Age" Type="int" />
+          <Property Name="Preferred_First_Name_First" Type="varchar" MaxLength="60" />
+          <Property Name="Vet_Per_Info_Value" Type="varchar" MaxLength="10" />
+          <Property Name="Vet_Status_Per_Info_Value" Type="varchar" MaxLength="30" />
+          <Property Name="Mail_Addr_Per_Addr_City" Type="varchar" MaxLength="60" />
+          <Property Name="Mail_Addr_Per_Addr_State" Type="varchar" MaxLength="30" />
+          <Property Name="Mail_Addr_Per_Addr_Street_1" Type="varchar" MaxLength="180" />
+          <Property Name="Mail_Addr_Per_Addr_Street_2" Type="varchar" MaxLength="180" />
+          <Property Name="Mail_Addr_Per_Addr_Zip" Type="varchar" MaxLength="20" />
+          <Property Name="Mail_Addr_Per_Addr_County" Type="varchar" MaxLength="30" />
+          <Property Name="Hm_Phn_Number" Type="varchar" MaxLength="30" />
+          <Property Name="Per_Email__Addr_Type_" Type="varchar" MaxLength="180" />
+          <Property Name="Mobile_ph_Per_Phn_Phone_Number" Type="varchar" MaxLength="20" />
+          <Property Name="Pref_Contact_Per_Phn_Contact_Method" Type="varchar" MaxLength="10" />
+          <Property Name="Pref_Contact_Per_Pat_Callback_Consent" Type="varchar" MaxLength="10" />
+          <Property Name="Pref_Contact_Per_Phn_Txt_Permission" Type="varchar" MaxLength="10" />
+          <Property Name="Hm_Addr_City" Type="varchar" MaxLength="60" />
+          <Property Name="Hm_Addr_County" Type="varchar" MaxLength="30" />
+          <Property Name="Hm_Addr_State" Type="varchar" MaxLength="30" />
+          <Property Name="Hm_Addr_Street_1" Type="varchar" MaxLength="180" />
+          <Property Name="Hm_Addr_Street_2" Type="varchar" MaxLength="180" />
+          <Property Name="Hm_Addr_Zip" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityContainer Name="ANAREPORTINGModelStoreContainer">
+          <EntitySet Name="HeL_FHIR_Log" EntityType="Self.HeL_FHIR_Log" Schema="EDW" store:Type="Tables" />
+          <EntitySet Name="HeL_FHIR_Log_Detail" EntityType="Self.HeL_FHIR_Log_Detail" Schema="EDW" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" store:Type="Tables" store:Schema="HHSNY">
+            <DefiningQuery>SELECT 
+    [Person].[Person_Update_Dt_Tm] AS [Person_Update_Dt_Tm], 
+    [Person].[Person_Create_Dt_Tm] AS [Person_Create_Dt_Tm], 
+    [Person].[Person_Id] AS [Person_Id], 
+    [Person].[Person_MRN] AS [Person_MRN], 
+    [Person].[Person_Name_First] AS [Person_Name_First], 
+    [Person].[Person_Name_Last] AS [Person_Name_Last], 
+    [Person].[Person_Name_Middle] AS [Person_Name_Middle], 
+    [Person].[Person_Name_Full_Format] AS [Person_Name_Full_Format], 
+    [Person].[Person_Abs_Birth_Dt_Tm] AS [Person_Abs_Birth_Dt_Tm], 
+    [Person].[Person_Sex] AS [Person_Sex], 
+    [Person].[Person_Ethnic_Group] AS [Person_Ethnic_Group], 
+    [Person].[Person_Race] AS [Person_Race], 
+    [Person].[Person_Language] AS [Person_Language], 
+    [Person].[Person_Marital_Type] AS [Person_Marital_Type], 
+    [Person].[Person_VIP] AS [Person_VIP], 
+    [Person].[Person_SSN] AS [Person_SSN], 
+    [Person].[Person_Current_Age] AS [Person_Current_Age], 
+    [Person].[Preferred_First_Name_First] AS [Preferred_First_Name_First], 
+    [Person].[Vet_Per_Info_Value] AS [Vet_Per_Info_Value], 
+    [Person].[Vet_Status_Per_Info_Value] AS [Vet_Status_Per_Info_Value], 
+    [Person].[Mail_Addr_Per_Addr_City] AS [Mail_Addr_Per_Addr_City], 
+    [Person].[Mail_Addr_Per_Addr_State] AS [Mail_Addr_Per_Addr_State], 
+    [Person].[Mail_Addr_Per_Addr_Street_1] AS [Mail_Addr_Per_Addr_Street_1], 
+    [Person].[Mail_Addr_Per_Addr_Street_2] AS [Mail_Addr_Per_Addr_Street_2], 
+    [Person].[Mail_Addr_Per_Addr_Zip] AS [Mail_Addr_Per_Addr_Zip], 
+    [Person].[Mail_Addr_Per_Addr_County] AS [Mail_Addr_Per_Addr_County], 
+    [Person].[Hm_Phn_Number] AS [Hm_Phn_Number], 
+    [Person].[Per_Email__Addr_Type_] AS [Per_Email__Addr_Type_], 
+    [Person].[Mobile_ph_Per_Phn_Phone_Number] AS [Mobile_ph_Per_Phn_Phone_Number], 
+    [Person].[Pref_Contact_Per_Phn_Contact_Method] AS [Pref_Contact_Per_Phn_Contact_Method], 
+    [Person].[Pref_Contact_Per_Pat_Callback_Consent] AS [Pref_Contact_Per_Pat_Callback_Consent], 
+    [Person].[Pref_Contact_Per_Phn_Txt_Permission] AS [Pref_Contact_Per_Phn_Txt_Permission], 
+    [Person].[Hm_Addr_City] AS [Hm_Addr_City], 
+    [Person].[Hm_Addr_County] AS [Hm_Addr_County], 
+    [Person].[Hm_Addr_State] AS [Hm_Addr_State], 
+    [Person].[Hm_Addr_Street_1] AS [Hm_Addr_Street_1], 
+    [Person].[Hm_Addr_Street_2] AS [Hm_Addr_Street_2], 
+    [Person].[Hm_Addr_Zip] AS [Hm_Addr_Zip]
+    FROM [HHSNY].[Person] AS [Person]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ANAREPORTINGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="RequestLog">
+          <Key>
+            <PropertyRef Name="helFhirLogId" />
+          </Key>
+          <Property Name="helFhirLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="requestStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="userName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userStation" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="patientMRN" Type="Int32" Nullable="false" />
+          <Property Name="requestDomain" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="requestUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="requestStatusCode" Type="Int32" Nullable="false" />
+          <Property Name="requestStatusMessage" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phiSource" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="AnaReportingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RequestLogs" EntityType="ANAREPORTINGModel.RequestLog" />
+          <EntitySet Name="People" EntityType="ANAREPORTINGModel.Person" />
+          <EntitySet Name="RequestLogDetails" EntityType="ANAREPORTINGModel.RequestLogDetail" />
+        </EntityContainer>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Person_Update_Dt_Tm" />
+            <PropertyRef Name="Person_Create_Dt_Tm" />
+            <PropertyRef Name="Person_Id" />
+            <PropertyRef Name="Person_MRN" />
+            <PropertyRef Name="Person_Sex" />
+          </Key>
+          <Property Name="Person_Update_Dt_Tm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Person_Create_Dt_Tm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Person_Id" Type="Int32" Nullable="false" />
+          <Property Name="Person_MRN" Type="Int32" Nullable="false" />
+          <Property Name="Person_Name_First" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Person_Name_Last" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Person_Name_Middle" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Person_Name_Full_Format" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+          <Property Name="Person_Abs_Birth_Dt_Tm" Type="DateTime" Precision="3" />
+          <Property Name="Person_Sex" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Person_Ethnic_Group" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Person_Race" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Person_Language" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Person_Marital_Type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Person_VIP" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Person_SSN" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Person_Current_Age" Type="Int32" />
+          <Property Name="Preferred_First_Name_First" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Vet_Per_Info_Value" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Vet_Status_Per_Info_Value" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Mail_Addr_Per_Addr_City" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Mail_Addr_Per_Addr_State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Mail_Addr_Per_Addr_Street_1" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+          <Property Name="Mail_Addr_Per_Addr_Street_2" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+          <Property Name="Mail_Addr_Per_Addr_Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Mail_Addr_Per_Addr_County" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Hm_Phn_Number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Per_Email__Addr_Type_" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile_ph_Per_Phn_Phone_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Pref_Contact_Per_Phn_Contact_Method" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Pref_Contact_Per_Pat_Callback_Consent" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Pref_Contact_Per_Phn_Txt_Permission" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Hm_Addr_City" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Hm_Addr_County" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Hm_Addr_State" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Hm_Addr_Street_1" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+          <Property Name="Hm_Addr_Street_2" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+          <Property Name="Hm_Addr_Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RequestLogDetail">
+          <Key>
+            <PropertyRef Name="helFhirLogDetailId" />
+          </Key>
+          <Property Name="helFhirLogDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="helFhirLogId" Type="Int32" Nullable="false" />
+          <Property Name="referenceUrl" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="informationSourceNode" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="informationSource" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ANAREPORTINGModelStoreContainer" CdmEntityContainer="AnaReportingEntities">
+          <EntitySetMapping Name="RequestLogs">
+            <EntityTypeMapping TypeName="ANAREPORTINGModel.RequestLog">
+              <MappingFragment StoreEntitySet="HeL_FHIR_Log">
+                <ScalarProperty Name="helFhirLogId" ColumnName="helFhirLogId" />
+                <ScalarProperty Name="requestStamp" ColumnName="requestStamp" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userStation" ColumnName="userStation" />
+                <ScalarProperty Name="patientMRN" ColumnName="patientMRN" />
+                <ScalarProperty Name="requestDomain" ColumnName="requestDomain" />
+                <ScalarProperty Name="requestUrl" ColumnName="requestUrl" />
+                <ScalarProperty Name="requestStatusCode" ColumnName="requestStatusCode" />
+                <ScalarProperty Name="requestStatusMessage" ColumnName="requestStatusMessage" />
+                <ScalarProperty Name="phiSource" ColumnName="phiSource" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="ANAREPORTINGModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Hm_Addr_Zip" ColumnName="Hm_Addr_Zip" />
+                <ScalarProperty Name="Hm_Addr_Street_2" ColumnName="Hm_Addr_Street_2" />
+                <ScalarProperty Name="Hm_Addr_Street_1" ColumnName="Hm_Addr_Street_1" />
+                <ScalarProperty Name="Hm_Addr_State" ColumnName="Hm_Addr_State" />
+                <ScalarProperty Name="Hm_Addr_County" ColumnName="Hm_Addr_County" />
+                <ScalarProperty Name="Hm_Addr_City" ColumnName="Hm_Addr_City" />
+                <ScalarProperty Name="Pref_Contact_Per_Phn_Txt_Permission" ColumnName="Pref_Contact_Per_Phn_Txt_Permission" />
+                <ScalarProperty Name="Pref_Contact_Per_Pat_Callback_Consent" ColumnName="Pref_Contact_Per_Pat_Callback_Consent" />
+                <ScalarProperty Name="Pref_Contact_Per_Phn_Contact_Method" ColumnName="Pref_Contact_Per_Phn_Contact_Method" />
+                <ScalarProperty Name="Mobile_ph_Per_Phn_Phone_Number" ColumnName="Mobile_ph_Per_Phn_Phone_Number" />
+                <ScalarProperty Name="Per_Email__Addr_Type_" ColumnName="Per_Email__Addr_Type_" />
+                <ScalarProperty Name="Hm_Phn_Number" ColumnName="Hm_Phn_Number" />
+                <ScalarProperty Name="Mail_Addr_Per_Addr_County" ColumnName="Mail_Addr_Per_Addr_County" />
+                <ScalarProperty Name="Mail_Addr_Per_Addr_Zip" ColumnName="Mail_Addr_Per_Addr_Zip" />
+                <ScalarProperty Name="Mail_Addr_Per_Addr_Street_2" ColumnName="Mail_Addr_Per_Addr_Street_2" />
+                <ScalarProperty Name="Mail_Addr_Per_Addr_Street_1" ColumnName="Mail_Addr_Per_Addr_Street_1" />
+                <ScalarProperty Name="Mail_Addr_Per_Addr_State" ColumnName="Mail_Addr_Per_Addr_State" />
+                <ScalarProperty Name="Mail_Addr_Per_Addr_City" ColumnName="Mail_Addr_Per_Addr_City" />
+                <ScalarProperty Name="Vet_Status_Per_Info_Value" ColumnName="Vet_Status_Per_Info_Value" />
+                <ScalarProperty Name="Vet_Per_Info_Value" ColumnName="Vet_Per_Info_Value" />
+                <ScalarProperty Name="Preferred_First_Name_First" ColumnName="Preferred_First_Name_First" />
+                <ScalarProperty Name="Person_Current_Age" ColumnName="Person_Current_Age" />
+                <ScalarProperty Name="Person_SSN" ColumnName="Person_SSN" />
+                <ScalarProperty Name="Person_VIP" ColumnName="Person_VIP" />
+                <ScalarProperty Name="Person_Marital_Type" ColumnName="Person_Marital_Type" />
+                <ScalarProperty Name="Person_Language" ColumnName="Person_Language" />
+                <ScalarProperty Name="Person_Race" ColumnName="Person_Race" />
+                <ScalarProperty Name="Person_Ethnic_Group" ColumnName="Person_Ethnic_Group" />
+                <ScalarProperty Name="Person_Sex" ColumnName="Person_Sex" />
+                <ScalarProperty Name="Person_Abs_Birth_Dt_Tm" ColumnName="Person_Abs_Birth_Dt_Tm" />
+                <ScalarProperty Name="Person_Name_Full_Format" ColumnName="Person_Name_Full_Format" />
+                <ScalarProperty Name="Person_Name_Middle" ColumnName="Person_Name_Middle" />
+                <ScalarProperty Name="Person_Name_Last" ColumnName="Person_Name_Last" />
+                <ScalarProperty Name="Person_Name_First" ColumnName="Person_Name_First" />
+                <ScalarProperty Name="Person_MRN" ColumnName="Person_MRN" />
+                <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
+                <ScalarProperty Name="Person_Create_Dt_Tm" ColumnName="Person_Create_Dt_Tm" />
+                <ScalarProperty Name="Person_Update_Dt_Tm" ColumnName="Person_Update_Dt_Tm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestLogDetails">
+            <EntityTypeMapping TypeName="ANAREPORTINGModel.RequestLogDetail">
+              <MappingFragment StoreEntitySet="HeL_FHIR_Log_Detail">
+                <ScalarProperty Name="informationSource" ColumnName="informationSource" />
+                <ScalarProperty Name="informationSourceNode" ColumnName="informationSourceNode" />
+                <ScalarProperty Name="referenceUrl" ColumnName="referenceUrl" />
+                <ScalarProperty Name="helFhirLogId" ColumnName="helFhirLogId" />
+                <ScalarProperty Name="helFhirLogDetailId" ColumnName="helFhirLogDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

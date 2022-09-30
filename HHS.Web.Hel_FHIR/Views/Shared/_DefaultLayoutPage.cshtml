@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="~/Content/images/hhs-favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Sarabun:100,400,700" rel="stylesheet" type="text/css" />
+    <title>HEALTHeLINK FHIR Query</title>
+    <script type="text/javascript" src="https://kit.fontawesome.com/f7eb71daac.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var _baseUrl = "@Url.Content("~")";
+    </script>
+    @Styles.Render("~/content/theme")
+    @Scripts.Render("~/bundles/scripts")
+    @RenderSection("AdditionalIncludes", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm p-3 mb-5 bg-white fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img src="~/Content/images/hhs-logo.png" alt="Horizon Health Services Logo" class="hhs-logo" /></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    @if (User.IsInRole(@"HORIZON-HEALTH\OfficeReservationAdmin"))
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Administration", "Admin", "Home", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                </ul>
+
+
+            </div>
+            <div class="d-flex">
+                <h1><i class="fa-solid fa-fire icon-flame pe-2"></i>HEALTHeLINK FHIR Query</h1>
+            </div>
+        </div>
+    </nav>
+
+    <div id="page-container">
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>
